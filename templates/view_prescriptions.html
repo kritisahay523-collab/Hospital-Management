@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Prescriptions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>🩺 Prescriptions for {{ patient_name }}</h1>
+
+    {% if prescriptions %}
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Doctor</th>
+            <th>Medication</th>
+            <th>Dosage</th>
+            <th>Date</th>
+        </tr>
+        {% for p in prescriptions %}
+        <tr>
+            <td>{{ p.prescription_id }}</td>
+            <td>{{ p.doctor_name }}</td>
+            <td>{{ p.medication_details }}</td>
+            <td>{{ p.dosage_instructions }}</td>
+            <td>{{ p.date.strftime('%Y-%m-%d %H:%M') }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p style="text-align:center;">No prescriptions available yet.</p>
+    {% endif %}
+
+    <a href="/PatientDetails">⬅ Back to Profile</a>
+    <a href="/logout">Logout</a>
+</body>
+</html>

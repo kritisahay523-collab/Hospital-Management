@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Patient Login</h1>
+    <form action="/login" method="POST">
+        <input type="text" name="username" placeholder="Enter Username" required>
+        <input type="password" name="password" placeholder="Enter Password" required>
+        <button type="submit">Login</button>
+    </form>
+
+    <a href="/Registration">New patient? Register here</a>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Welcome Dr. {{ doctor_name }}</h1>
+
+    <h2>All Patients</h2>
+    <table>
+        <tr>
+            <th>ID</th><th>Name</th><th>Age</th><th>Gender</th><th>Action</th>
+        </tr>
+        {% for patient in patients %}
+        <tr>
+            <td>{{ patient.patient_id }}</td>
+            <td>{{ patient.name }}</td>
+            <td>{{ patient.age }}</td>
+            <td>{{ patient.gender }}</td>
+            <td>
+                <form action="/add_prescription/{{ patient.patient_id }}" method="POST">
+                    <input type="text" name="medication" placeholder="Medication Details" required>
+                    <input type="text" name="dosage" placeholder="Dosage Instructions" required>
+                    <button type="submit">Add Prescription</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="/logout">Logout</a>
+</body>
+</html>
